@@ -1,11 +1,12 @@
 Summary:	Replay captured network traffic
 Name:		tcpreplay
 Version:	4.3.2
-Release:	1
+Release:	2
 License:	GPL v3
 Group:		Applications/Networking
 Source0:	https://github.com/appneta/tcpreplay/releases/download/v%{version}/%{name}-%{version}.tar.xz
 # Source0-md5:	084d6162a01a0be2cd61624f010002a0
+Patch0:		x32.patch
 URL:		http://tcpreplay.appneta.com/
 BuildRequires:	libdnet-devel
 BuildRequires:	libpcap-devel >= 0.8.0
@@ -21,6 +22,7 @@ which provides basic information about capture files.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__libtoolize}

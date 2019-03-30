@@ -1,0 +1,38 @@
+--- tcpreplay-4.3.2/configure.ac~	2019-03-12 20:46:23.000000000 +0100
++++ tcpreplay-4.3.2/configure.ac	2019-03-30 20:33:13.916245547 +0100
+@@ -627,7 +627,7 @@
+         LPCAPINCDIR=${testdir}
+         if test $dynamic_link = yes; then
+             for ext in .dylib .so .tbd ; do
+-                for dir in . lib lib64 lib/${host_cpu}-${host_os} ${host_cpu}-${host_os} lib/${MULTIARCH} ${MULTIARCH}; do
++                for dir in . lib lib64 libx32 lib/${host_cpu}-${host_os} ${host_cpu}-${host_os} lib/${MULTIARCH} ${MULTIARCH}; do
+                     sharefile=$(ls ${testdir}/$dir/libpcap${ext}* 2> /dev/null | sort | head -n1)
+                     if test -n "${sharefile}"; then
+                         LPCAPLIB="-L$(dirname ${sharefile}) -lpcap"
+@@ -645,7 +645,7 @@
+             dnl If dynamic library not found, try static
+             dnl
+             for ext in ${libext} .a .A.tbd ; do
+-                for dir in . lib lib64 lib/${host_cpu}-${host_os} ${host_cpu}-${host_os} lib/${MULTIARCH} ${MULTIARCH}; do
++                for dir in . lib lib64 libx32 lib/${host_cpu}-${host_os} ${host_cpu}-${host_os} lib/${MULTIARCH} ${MULTIARCH}; do
+                     staticfile=$(ls ${testdir}/$dir/libpcap${ext} 2> /dev/null | sort | head -n1)
+                     if test -n "${staticfile}"; then
+                         LPCAPLIB="${staticfile}"
+@@ -756,7 +756,7 @@
+                 LPCAPINCDIR="${testdir}/include"
+                 if test $dynamic_link = yes; then
+                     for ext in .dylib .so .tbd; do
+-                        for dir in . lib lib64 ${host_cpu} lib/${host_cpu} ${host_cpu}-${host_os} lib/${host_cpu}-${host_os} ${MULTIARCH} lib/${MULTIARCH}; do
++                        for dir in . lib lib64 libx32 ${host_cpu} lib/${host_cpu} ${host_cpu}-${host_os} lib/${host_cpu}-${host_os} ${MULTIARCH} lib/${MULTIARCH}; do
+                             sharefile=$(ls "${testdir}/$dir/libpcap${ext}" 2> /dev/null | sort | head -n1)
+                             if test -n "${sharefile}"; then
+                                 LPCAPLIB="-L$(dirname ${sharefile}) -lpcap"
+@@ -775,7 +775,7 @@
+                     dnl If dynamic library not found, try static
+                     dnl
+                     for ext in ${libext} .a .A.tbd ; do
+-                        for dir in . lib lib64 lib/${host_cpu}-${host_os} ${host_cpu}-${host_os} lib/${MULTIARCH} ${MULTIARCH}; do
++                        for dir in . lib lib64 libx32 lib/${host_cpu}-${host_os} ${host_cpu}-${host_os} lib/${MULTIARCH} ${MULTIARCH}; do
+                             staticfile=$(ls "${testdir}/$dir/libpcap${ext}" 2> /dev/null | sort | head -n1)
+                             if test -n "${staticfile}"; then
+                                 LPCAPLIB="${staticfile}"
